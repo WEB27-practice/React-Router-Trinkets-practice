@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  Link,
+  Switch,
+  Route
+} from "react-router-dom";
+import Home from "./components/Home";
+import ItemsList from "./components/ItemsList";
+import Item from "./components/Item";
+import items from "./data";
+import "./styles.css";
 
-function App() {
+const App = () => {
+  const [product] = useState(items);
+  console.log("this is our data", product);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        <h1 className="store-header">
+          Christina's Trinkets
+        </h1>
+        <div className="nav-links">
+          <Link className="some-link" to="/">
+            Home
+          </Link>
+          <Link to="/item-list">Shop</Link>
+        </div>
+      </nav>
+
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={Home}
+        />
+        {/* <Route exact path="/">
+          <Home />
+        </Route> */}
+        {/* <Route exact path="/item-list" component={ItemsList} /> */}
+        <Route exact path="/item-list">
+          <ItemsList items={product} />
+        </Route>
+        {/* <Route path="/item-list/:dataID" component={Item} /> */}
+        <Route path="/item-list/:itemID">
+          <Item items={product} />
+        </Route>
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;

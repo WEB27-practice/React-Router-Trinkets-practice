@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 function Item(props) {
   const { itemID } = useParams();
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-  const shopItem = items.find(
+  const shopItem = props.items.find(
     item => itemID === `${item.id}`
   );
   // const shopItem = items.find(item => Number(itemID) === item.id);
