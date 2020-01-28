@@ -29,22 +29,22 @@ const App = () => {
       </nav>
 
       <Switch>
+        {/* <Route path="/item-list/:dataID" component={Item} /> */}
+        <Route path="/item-list/:itemID">
+          <Item items={product} />
+        </Route>
+        {/* <Route exact path="/item-list" component={ItemsList} /> */}
+        <Route exact path="/item-list">
+          <ItemsList items={product} />
+        </Route>
+        {/* <Route exact path="/">
+          <Home />
+        </Route> */}
         <Route
           exact
           path="/"
           component={Home}
         />
-        {/* <Route exact path="/">
-          <Home />
-        </Route> */}
-        {/* <Route exact path="/item-list" component={ItemsList} /> */}
-        <Route exact path="/item-list">
-          <ItemsList items={product} />
-        </Route>
-        {/* <Route path="/item-list/:dataID" component={Item} /> */}
-        <Route path="/item-list/:itemID">
-          <Item items={product} />
-        </Route>
       </Switch>
     </div>
   );
