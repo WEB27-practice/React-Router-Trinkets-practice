@@ -1,5 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
+import ItemDescription from "./ItemDescription.js";
+import ItemShipping from "./ItemShipping.js";
 
 function Item(props) {
   const { itemID } = useParams();
@@ -7,28 +9,37 @@ function Item(props) {
   const shopItem = props.items.find(
     item => itemID === `${item.id}`
   );
+
+  const { path, url } = useRouteMatch();
+  
   // const shopItem = items.find(item => Number(itemID) === item.id);
-  return (
-    <div className="item-wrapper">
-      <div className="item-header">
-        <div className="image-wrapper">
-          <img
-            src={shopItem.imageUrl}
-            alt={shopItem.name}
-          />
+    return (
+        <div className="item-wrapper">
+        <div className="item-header">
+            <div className="image-wrapper">
+            <img
+                src={shopItem.imageUrl}
+                alt={shopItem.name}
+            />
+            </div>
+            <div className="item-title-wrapper">
+            <h2>{shopItem.name}</h2>
+            <h4>${shopItem.price}</h4>
+            </div>
         </div>
-        <div className="item-title-wrapper">
-          <h2>{shopItem.name}</h2>
-          <h4>${shopItem.price}</h4>
+        <nav>
+            <Link to={`${url}/shipping`}>Shipping</Link>
+            <Link to={`${url}/description`}>Description</Link>
+        </nav>
+        {/* Below, can use a variable so that it stays the same even if another dev changes the data */}
+        <Route path={`${path}/shipping`}>
+            <ItemShipping item={shopItem} />
+        </Route>
+        <Route path={`${path}/description`}>
+            <ItemDescription item={shopItem} />
+        </Route>
         </div>
-      </div>
-      <div>
-        <p className="item-description">
-          {shopItem.description}
-        </p>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Item;
