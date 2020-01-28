@@ -28,20 +28,20 @@ const App = () => {
         </div>
       </nav>
 
+      {/* Switch doesn't require exact path prop, but you need to structure them so that the most detailed route is at the top and least detailed route is at the bottom */}
       <Switch>
         {/* <Route path="/item-list/:dataID" component={Item} /> */}
         <Route path="/item-list/:itemID">
           <Item items={product} />
         </Route>
         {/* <Route exact path="/item-list" component={ItemsList} /> */}
-        <Route exact path="/item-list">
+        <Route path="/item-list">
           <ItemsList items={product} />
         </Route>
         {/* <Route exact path="/">
           <Home />
         </Route> */}
         <Route
-          exact
           path="/"
           component={Home}
         />

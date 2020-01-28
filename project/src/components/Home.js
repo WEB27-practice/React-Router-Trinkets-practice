@@ -5,12 +5,14 @@ function Home() {
   // console.log(props);
   const history = useHistory();
   console.log('this is the history', history);
+
   const routeToShop = () => {
       console.log("Submitting...");
       setTimeout(() => {
         history.push("/item-list")
       }, 500)
   }
+  
   return (
     <div className="home-wrapper">
       <img

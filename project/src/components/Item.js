@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
+import { useParams, Route, NavLink, useRouteMatch } from "react-router-dom";
 import ItemDescription from "./ItemDescription.js";
 import ItemShipping from "./ItemShipping.js";
 
@@ -27,15 +27,15 @@ function Item(props) {
             <h4>${shopItem.price}</h4>
             </div>
         </div>
-        <nav>
-            <Link to={`${url}/shipping`}>Shipping</Link>
-            <Link to={`${url}/description`}>Description</Link>
+        <nav className="item-sub-nav">
+            <NavLink to={`${url}/shipping`}>Shipping</NavLink>
+            <NavLink to={`${url}/description`}>Description</NavLink>
         </nav>
         {/* Below, can use a variable so that it stays the same even if another dev changes the data */}
         <Route path={`${path}/shipping`}>
             <ItemShipping item={shopItem} />
         </Route>
-        <Route path={`${path}/description`}>
+        <Route path={`${path}`}>
             <ItemDescription item={shopItem} />
         </Route>
         </div>
